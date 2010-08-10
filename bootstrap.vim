@@ -42,9 +42,14 @@ set hidden
 
 " turn off gui panel
 set guioptions-=T
+" turn off gui menu
+set guioptions-=m
 
 " syntax highlighter
 syntax on
+
+" show cursor line
+:set cursorline
 
 " tabs
 set shiftwidth=4
@@ -110,7 +115,7 @@ set complete+=k
 set complete+=b
 set complete+=t
 
-colorscheme desert
+colorscheme slik
 
 " Plugins
 " source /home/slik/.vim/plugins/nerdtree.vim
