@@ -64,6 +64,10 @@ imap <C-V> <esc>"+gPi
 imap <C-d> <esc>yypi
 nmap ; :%s/\<<c-r>=expand("<cword>")<cr>\>/
 
+nmap <C-s> :w<cr>
+vmap <C-s> <esc>:w<cr>i
+imap <C-s> <esc>:w<cr>i
+
 nmap <F2> :w<cr>
 vmap <F2> <esc>:w<cr>i
 imap <F2> <esc>:w<cr>i
