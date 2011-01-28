@@ -117,6 +117,25 @@ set complete+=t
 
 colorscheme slik
 
+" List
+nmap <F6> :set list!<CR>
+set listchars=tab:▸\ ,eol:¬
+
+set list
+
+function! <SID>StripTrailingWhitespaces()
+    " Preparation: save last search, and cursor position.
+    let _s=@/
+    let l = line(".")
+    let c = col(".")
+    " Do the business:
+    %s/\s\+$//e
+    " Clean up: restore previous search history, and cursor position
+    let @/=_s
+    call cursor(l, c)
+endfunction
+autocmd BufWritePre *.py,*.php,*.js :call <SID>StripTrailingWhitespaces()
+
 " Plugins
 " source /home/slik/.vim/plugins/nerdtree.vim
 " call s:initNerdTree(getcwd())
