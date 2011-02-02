@@ -63,21 +63,41 @@ set smartindent
 set fo+=cr
 
 " HOTKEYS
+vmap <C-C> "+yi
+imap <C-V> <esc>"+gPa
+imap <C-d> <esc>yypa
+
 nmap <C-s> :w<cr>
-vmap <C-s> <esc>:w<cr>i
-imap <C-s> <esc>:w<cr>i
+vmap <C-s> <esc>:w<cr>a
+imap <C-s> <esc>:w<cr>a
 
 map <F11> :NERDTree /shared/www/<cr>
-vmap <F11> <esc>:NERDTree /shared/www/<cr>i
-imap <F11> <esc>:NERDTree /shared/www/<cr>i
-
-map <F12> :Ex<cr>
-vmap <F12> <esc>:Ex<cr>i
-imap <F12> <esc>:Ex<cr>i
+vmap <F11> <esc>:NERDTree /shared/www/<cr>a
+imap <F11> <esc>:NERDTree /shared/www/<cr>a
 
 map <F5> :BufExplorer<cr>
-vmap <F5> <esc>:BufExplorer<cr>i
-imap <F5> <esc>:BufExplorer<cr>i
+vmap <F5> <esc>:BufExplorer<cr>a
+imap <F5> <esc>:BufExplorer<cr>a
+
+vmap <M-j> gj
+vmap <M-k> gk
+vmap <M-4> g$
+vmap <M-6> g^
+vmap <M-0> g^
+nmap <M-j> gj
+nmap <M-k> gk
+nmap <M-4> g$
+nmap <M-6> g^
+nmap <M-0> g^
+
+imap >Ins> <Esc>i
+
+" NO SWAPS
+set nobackup
+set nowritebackup
+set noswapfile
+
+set showbreak=\ >>>\ 
 
 function InsertTabWrapper()
      let col = col('.') - 1
@@ -95,7 +115,9 @@ set complete+=k
 set complete+=b
 set complete+=t
 
-colorscheme slik
+set formatprg=par\ -w120rq
+
+colorscheme vydark
 
 " List
 nmap <F6> :set list!<CR>
@@ -132,3 +154,19 @@ function! <SID>SynStack()
 	endif
 	echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunction
+
+" Show syntax highlighting groups for word under cursor
+nmap <C-S-P> :call <SID>SynStack()<CR>
+function! <SID>SynStack()
+  if !exists("*synstack")
+    return
+  endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
+
+" Plugins
+" source /home/slik/.vim/plugins/nerdtree.vim
+" call s:initNerdTree(getcwd())
+" source /home/slik/.vim/plugins/fugitive.vim
+" source /home/slik/.vim/plugins/zencoding.vim
+" source /home/slik/.vim/plugins/bufexplorer.vim
