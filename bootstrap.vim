@@ -3,7 +3,7 @@ set nocompatible
 
 " database mysql
 if has("autocmd")
-    autocmd BufRead *.sql set filetype=mysql      
+    autocmd BufRead *.sql set filetype=mysql
 endif
 
 " encoding
@@ -26,8 +26,8 @@ set nu
 set incsearch
 
 " scroll
-set scrolljump=5
-set scrolloff=5
+set scrolljump=3
+set scrolloff=3
 
 " beep off
 set novisualbell
@@ -49,7 +49,7 @@ set guioptions-=m
 syntax on
 
 " show cursor line
-:set cursorline
+set cursorline
 
 " tabs
 set shiftwidth=4
@@ -63,27 +63,9 @@ set smartindent
 set fo+=cr
 
 " HOTKEYS
-nmap <Space> <PageDown>
-vmap <C-C> "+yi
-imap <C-V> <esc>"+gPi
-imap <C-d> <esc>yypi
-nmap ; :%s/\<<c-r>=expand("<cword>")<cr>\>/
-
 nmap <C-s> :w<cr>
 vmap <C-s> <esc>:w<cr>i
 imap <C-s> <esc>:w<cr>i
-
-nmap <F2> :w<cr>
-vmap <F2> <esc>:w<cr>i
-imap <F2> <esc>:w<cr>i
-
-nmap <F3> :copen<cr>
-vmap <F3> <esc>:copen<cr>
-imap <F3> <esc>:copen<cr>
-
-nmap <F4> :SessionList<cr>
-vmap <F4> <esc>:SessionList<cr>
-imap <F4> <esc>:SessionList<cr>
 
 map <F11> :NERDTree /shared/www/<cr>
 vmap <F11> <esc>:NERDTree /shared/www/<cr>i
@@ -96,8 +78,6 @@ imap <F12> <esc>:Ex<cr>i
 map <F5> :BufExplorer<cr>
 vmap <F5> <esc>:BufExplorer<cr>i
 imap <F5> <esc>:BufExplorer<cr>i
-
-imap >Ins> <Esc>i
 
 function InsertTabWrapper()
      let col = col('.') - 1
@@ -136,9 +116,19 @@ function! <SID>StripTrailingWhitespaces()
 endfunction
 autocmd BufWritePre *.py,*.php,*.js :call <SID>StripTrailingWhitespaces()
 
-" Plugins
-" source /home/slik/.vim/plugins/nerdtree.vim
-" call s:initNerdTree(getcwd())
-" source /home/slik/.vim/plugins/fugitive.vim
-" source /home/slik/.vim/plugins/zencoding.vim
-" source /home/slik/.vim/plugins/bufexplorer.vim
+" Bubble single line
+nmap <C-Up> ddkP
+nmap <C-Down> ddp
+
+" Bubble mutiple lines
+vmap <C-Up> xkP`[V`]
+vmap <C-down> xp`[V`]
+
+" shows highlight group
+nmap <C-S-P> :call <SID>SynStack()<CR>
+function! <SID>SynStack()
+	if !exists("*synstack")
+		return
+	endif
+	echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunction
