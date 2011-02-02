@@ -4064,6 +4064,4 @@ endfunction
 "reset &cpo back to users setting
 let &cpo = s:old_cpo
 
-call s:initNerdTree('/shared/www/')
-
 " vim: set sw=4 sts=4 et fdm=marker:

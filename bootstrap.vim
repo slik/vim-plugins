@@ -63,41 +63,28 @@ set smartindent
 set fo+=cr
 
 " HOTKEYS
-nmap <Space> <PageDown>
 vmap <C-C> "+yi
-imap <C-V> <esc>"+gPi
-imap <C-d> <esc>yypi
-nmap ; :%s/\<<c-r>=expand("<cword>")<cr>\>/
+imap <C-V> <esc>"+gPa
+imap <C-d> <esc>yypa
 
 nmap <C-s> :w<cr>
-vmap <C-s> <esc>:w<cr>i
-imap <C-s> <esc>:w<cr>i
-
-nmap <F2> :w<cr>
-vmap <F2> <esc>:w<cr>i
-imap <F2> <esc>:w<cr>i
-
-nmap <F3> :copen<cr>
-vmap <F3> <esc>:copen<cr>
-imap <F3> <esc>:copen<cr>
-
-nmap <F4> :SessionList<cr>
-vmap <F4> <esc>:SessionList<cr>
-imap <F4> <esc>:SessionList<cr>
+vmap <C-s> <esc>:w<cr>a
+imap <C-s> <esc>:w<cr>a
 
 map <F11> :NERDTree /shared/www/<cr>
-vmap <F11> <esc>:NERDTree /shared/www/<cr>i
-imap <F11> <esc>:NERDTree /shared/www/<cr>i
-
-map <F12> :Ex<cr>
-vmap <F12> <esc>:Ex<cr>i
-imap <F12> <esc>:Ex<cr>i
+vmap <F11> <esc>:NERDTree /shared/www/<cr>a
+imap <F11> <esc>:NERDTree /shared/www/<cr>a
 
 map <F5> :BufExplorer<cr>
-vmap <F5> <esc>:BufExplorer<cr>i
-imap <F5> <esc>:BufExplorer<cr>i
+vmap <F5> <esc>:BufExplorer<cr>a
+imap <F5> <esc>:BufExplorer<cr>a
 
 imap >Ins> <Esc>i
+
+" NO SWAPS
+set nobackup
+set nowritebackup
+set noswapfile
 
 function InsertTabWrapper()
      let col = col('.') - 1
@@ -115,7 +102,7 @@ set complete+=k
 set complete+=b
 set complete+=t
 
-colorscheme slik
+colorscheme vydark
 
 " List
 nmap <F6> :set list!<CR>
@@ -135,6 +122,15 @@ function! <SID>StripTrailingWhitespaces()
     call cursor(l, c)
 endfunction
 autocmd BufWritePre *.py,*.php,*.js :call <SID>StripTrailingWhitespaces()
+
+" Show syntax highlighting groups for word under cursor
+nmap <C-S-P> :call <SID>SynStack()<CR>
+function! <SID>SynStack()
+  if !exists("*synstack")
+    return
+  endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
 
 " Plugins
 " source /home/slik/.vim/plugins/nerdtree.vim
