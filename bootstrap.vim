@@ -79,12 +79,25 @@ map <F5> :BufExplorer<cr>
 vmap <F5> <esc>:BufExplorer<cr>a
 imap <F5> <esc>:BufExplorer<cr>a
 
+vmap <M-j> gj
+vmap <M-k> gk
+vmap <M-4> g$
+vmap <M-6> g^
+vmap <M-0> g^
+nmap <M-j> gj
+nmap <M-k> gk
+nmap <M-4> g$
+nmap <M-6> g^
+nmap <M-0> g^
+
 imap >Ins> <Esc>i
 
 " NO SWAPS
 set nobackup
 set nowritebackup
 set noswapfile
+
+set showbreak=\ >>>\ 
 
 function InsertTabWrapper()
      let col = col('.') - 1
@@ -101,6 +114,8 @@ set complete+=.
 set complete+=k
 set complete+=b
 set complete+=t
+
+set formatprg=par\ -w120rq
 
 colorscheme vydark
 
