@@ -29,7 +29,6 @@ hi ModeMsg       guifg=#99dd99  guibg=#394439  gui=none
 hi ErrorMsg      guifg=#222222  guibg=#ff8888  gui=none
 hi Error         guifg=#ffaaaa  guibg=#333333  gui=none
 
-
 " Vim 7.x specific
 if version >= 700
   hi MatchParen  guibg=#364836  gui=none
@@ -49,7 +48,7 @@ endif
 
 
 " Syntax highlighting 
-hi Comment       guifg=#9999aa  gui=none
+hi Comment       guifg=#aaaaaa  gui=none
 hi Todo          guifg=#8888aa  guibg=#303030  gui=italic
 hi Operator      guifg=#bbbbbb  gui=bold
 hi Identifier    guifg=#99bbcc  gui=bold
@@ -95,3 +94,6 @@ hi vimFuncName            guifg=#ffffff
 hi javaScript             guifg=#dddddd
 hi javaScriptNumber       guifg=#ffbbbb
 hi link javaScriptOperator Conditional
+hi javaScriptBraces       guifg=#bbbb99
+hi link javaScriptParens  javaScriptBraces
+hi phpParent              guifg=#aaaabb
