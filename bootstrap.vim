@@ -3,7 +3,7 @@ set nocompatible
 
 " database mysql
 if has("autocmd")
-    autocmd BufRead *.sql set filetype=mysql      
+    autocmd BufRead *.sql set filetype=mysql
 endif
 
 " encoding
@@ -26,8 +26,8 @@ set nu
 set incsearch
 
 " scroll
-set scrolljump=5
-set scrolloff=5
+set scrolljump=3
+set scrolloff=3
 
 " beep off
 set novisualbell
@@ -49,7 +49,7 @@ set guioptions-=m
 syntax on
 
 " show cursor line
-:set cursorline
+set cursorline
 
 " tabs
 set shiftwidth=4
@@ -137,6 +137,23 @@ function! <SID>StripTrailingWhitespaces()
     call cursor(l, c)
 endfunction
 autocmd BufWritePre *.py,*.php,*.js :call <SID>StripTrailingWhitespaces()
+
+" Bubble single line
+nmap <C-Up> ddkP
+nmap <C-Down> ddp
+
+" Bubble mutiple lines
+vmap <C-Up> xkP`[V`]
+vmap <C-down> xp`[V`]
+
+" shows highlight group
+nmap <C-S-P> :call <SID>SynStack()<CR>
+function! <SID>SynStack()
+	if !exists("*synstack")
+		return
+	endif
+	echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunction
 
 " Show syntax highlighting groups for word under cursor
 nmap <C-S-P> :call <SID>SynStack()<CR>
