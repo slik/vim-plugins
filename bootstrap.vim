@@ -64,8 +64,8 @@ set fo+=cr
 
 " HOTKEYS
 vmap <C-C> "+yi
-imap <C-V> <esc>"+gPa
-imap <C-d> <esc>yypa
+imap <C-V> <esc>"+gpi
+imap <C-d> <esc>yypi
 
 nmap <C-s> :w<cr>
 vmap <C-s> <esc>:w<cr>a
@@ -146,6 +146,9 @@ function! <SID>SynStack()
   endif
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
+
+" highlightings
+set hls
 
 " Plugins
 " source /home/slik/.vim/plugins/nerdtree.vim

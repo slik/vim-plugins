@@ -97,3 +97,8 @@ hi link javaScriptOperator Conditional
 hi javaScriptBraces       guifg=#bbbb99
 hi link javaScriptParens  javaScriptBraces
 hi phpParent              guifg=#aaaabb
+hi phpMethods             guifg=#dddddd
+hi phpComparison          guifg=#dddddd gui=bold
+hi link phpOperator       phpComparison
+hi link phpMemberSelector phpComparison
+hi SignColumn             guifg=yellowgreen  guibg=grey20
