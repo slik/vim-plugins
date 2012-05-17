@@ -64,16 +64,16 @@ set fo+=cr
 
 " HOTKEYS
 vmap <C-C> "+yi
-imap <C-V> <esc>"+gPa
+imap <C-V> <esc>"+gpi
 imap <C-d> <esc>yypa
 
 nmap <C-s> :w<cr>
 vmap <C-s> <esc>:w<cr>a
 imap <C-s> <esc>:w<cr>a
 
-map <F11> :NERDTree /shared/www/<cr>
-vmap <F11> <esc>:NERDTree /shared/www/<cr>a
-imap <F11> <esc>:NERDTree /shared/www/<cr>a
+map <F11> :NERDTree /var/www/<cr>
+vmap <F11> <esc>:NERDTree /var/www/<cr>a
+imap <F11> <esc>:NERDTree /var/www/<cr>a
 
 map <F5> :BufExplorer<cr>
 vmap <F5> <esc>:BufExplorer<cr>a
