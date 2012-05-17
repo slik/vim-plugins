@@ -164,6 +164,9 @@ function! <SID>SynStack()
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
 endfunc
 
+" highlightings
+set hls
+
 " Plugins
 " source /home/slik/.vim/plugins/nerdtree.vim
 " call s:initNerdTree(getcwd())
